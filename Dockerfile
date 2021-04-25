@@ -13,12 +13,12 @@ unzip \
 wget \
 nano \
 tzdata && \
-ln -fs /usr/share/zoneinfo/Europe/London /etc/localtime && \
+ln -fs /usr/share/zoneinfo/Australia/Perth /etc/localtime && \
 dpkg-reconfigure --frontend noninteractive tzdata && \
 apt-get autoremove -y && \
 
 
-wget -o - https://www.hls-proxy.com/downloads/7.1.0/hls-proxy-7.1.0.linux-x64.zip -O hlsproxy.zip && \
+wget -o - https://www.hls-proxy.com/downloads/7.5.6/hls-proxy-7.5.6.linux-x64.zip -O hlsproxy.zip && \
 unzip hlsproxy.zip -d /opt/hlsp/ && \
 
 chmod +x /opt/hlsp/hls-proxy
