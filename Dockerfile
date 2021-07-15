@@ -17,11 +17,11 @@ tzdata && \
 ln -fs /usr/share/zoneinfo/%{TZ} /etc/localtime && \
 dpkg-reconfigure --frontend noninteractive tzdata && \
 apt-get autoremove -y && \
-
-
 wget -o - https://www.hls-proxy.com/downloads/${HLSPROXY_VERSION}/hls-proxy-${HLSPROXY_VERSION}.linux-x64.zip -O hlsproxy.zip && \
 unzip hlsproxy.zip -d /opt/hlsp/ && \
 chmod +x /opt/hlsp/hls-proxy && \
 /opt/hlsp/hls-proxy -address 0.0.0.0 -port 88 -save -quit
+
+VOLUME [ "/opt/hlsp" ]
 
 CMD ["/opt/hlsp/hls-proxy"]
