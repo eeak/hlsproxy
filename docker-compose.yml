@@ -1,0 +1,14 @@
+version: '3.7'
+services:
+  hls:
+    container_name: hls_proxy
+    build: ./
+    ports:
+      - '88:8085'
+#    dns:
+#      - 1.1.1.1
+    volumes:
+      - ./data:/opt/hlsp/
+#    stdin_open: true # docker run -i
+#    tty: true        # docker run -t
+
