@@ -8,6 +8,8 @@ services:
 #    dns:
 #      - 1.1.1.1
     volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - /etc/timezone:/etc/timezone:ro
       - ./data:/opt/hlsp/
 #    stdin_open: true # docker run -i
 #    tty: true        # docker run -t
