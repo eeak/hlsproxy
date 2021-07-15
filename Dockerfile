@@ -4,6 +4,7 @@ ENV HLSPROXY_VERSION="7.7.1" \
   TZ="Europe/Tallinn" \
   DEBIAN_FRONTEND=noninteractive
 WORKDIR /tmp
+VOLUME [ "/opt/hlsp" ]
 
 EXPOSE 88
 
@@ -21,7 +22,5 @@ wget -o - https://www.hls-proxy.com/downloads/${HLSPROXY_VERSION}/hls-proxy-${HL
 unzip hlsproxy.zip -d /opt/hlsp/ && \
 chmod +x /opt/hlsp/hls-proxy && \
 /opt/hlsp/hls-proxy -address 0.0.0.0 -port 88 -save -quit
-
-VOLUME [ "/opt/hlsp" ]
 
 CMD ["/opt/hlsp/hls-proxy"]
