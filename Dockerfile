@@ -1,7 +1,8 @@
 FROM debian:stable-slim
 
-
-ENV DEBIAN_FRONTEND=noninteractive
+ENV HLSPROXY_VERSION="7.7.1" \
+  TZ="Europe/Tallinn" \
+  DEBIAN_FRONTEND=noninteractive
 WORKDIR /tmp
 
 EXPOSE 88
@@ -13,12 +14,12 @@ unzip \
 wget \
 nano \
 tzdata && \
-ln -fs /usr/share/zoneinfo/Australia/Perth /etc/localtime && \
+ln -fs /usr/share/zoneinfo/%{TZ} /etc/localtime && \
 dpkg-reconfigure --frontend noninteractive tzdata && \
 apt-get autoremove -y && \
 
 
-wget -o - https://www.hls-proxy.com/downloads/7.7.1/hls-proxy-7.7.1.linux-x64.zip -O hlsproxy.zip && \
+wget -o - https://www.hls-proxy.com/downloads/${HLSPROXY_VERSION}/hls-proxy-${HLSPROXY_VERSION}.linux-x64.zip -O hlsproxy.zip && \
 unzip hlsproxy.zip -d /opt/hlsp/ && \
 chmod +x /opt/hlsp/hls-proxy && \
 /opt/hlsp/hls-proxy -address 0.0.0.0 -port 88 -save -quit
